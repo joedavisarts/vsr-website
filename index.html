@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verlando Small: Reimagined</title>
+  <meta name="description" content="not a hot dog and plastic cup show.">
+
+  <!-- Google Fonts: Cormorant Garamond (headings) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===================================================================
+       DESIGN TOKENS
+    =================================================================== */
+    :root {
+      --gold:          #EEBE4E;
+      --gold-dim:      rgba(238, 190, 78, 0.12);
+      --gold-border:   rgba(238, 190, 78, 0.35);
+      --bg-deep:       #080808;
+      --bg-section:    #0a0a0a;
+      --bg-card:       #101010;
+      --bg-card-hover: #151515;
+      --text-primary:  #f0f0f0;
+      --text-secondary:#7a7a7a;
+      --text-muted:    #444444;
+      --rule:          rgba(255, 255, 255, 0.06);
+      --serif:         'Cormorant Garamond', Georgia, serif;
+      --sans:          'DM Sans', system-ui, -apple-system, sans-serif;
+      --ease-out:      cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===================================================================
+       RESET & BASE
+    =================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===================================================================
+       HERO
+    =================================================================== */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ── Background image ──────────────────────────────────────────
+         FILE: verlando.jpg
+         Place your photo in the same folder as this index.html.
+         Optimal: high-res landscape, dark or mid-tone subject area.
+    ────────────────────────────────────────────────────────────── */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('verlandooo.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: brightness(0.35);
+      z-index: 0;
+    }
+
+    /* Dark overlay — uniform mute on top of the already-darkened photo */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    /* ── Hero content ──────────────────────────────────────────── */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    /* ── Logo ──────────────────────────────────────────────────────
+         FILE: logo.png
+         Recommended: transparent PNG, ~400px wide, light/white version.
+         Falls back to a circular text placeholder if image is missing.
+    ────────────────────────────────────────────────────────────── */
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      filter: brightness(1.05);
+    }
+
+    .hero-logo-fallback {
+      display: none; /* shown via JS onerror */
+      width: 110px;
+      height: 110px;
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* Eyebrow label */
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+    }
+
+    /* Logotype image (replaces text title) */
+    .hero-logotype {
+      width: min(749px, 95vw);
+      height: auto;
+      display: block;
+      filter: brightness(1.05);
+    }
+
+    /* Tagline */
+    .hero-tagline {
+      font-family: var(--sans);
+      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      color: var(--text-secondary);
+      margin-top: -0.4rem;
+    }
+
+    /* ── Enter button ─────────────────────────────────────────── */
+    .btn-enter {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.9rem 2.8rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s var(--ease-out);
+    }
+
+    .btn-enter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.35s var(--ease-out);
+      z-index: 0;
+    }
+
+    .btn-enter span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-enter:hover {
+      color: var(--bg-deep);
+    }
+
+    .btn-enter:hover::before {
+      transform: scaleX(1);
+    }
+
+
+
+    /* ===================================================================
+       SETLIST SECTION
+    =================================================================== */
+    #setlist {
+      background: var(--bg-section);
+      padding: 7rem 1.5rem 9rem;
+    }
+
+    .setlist-inner {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* Section header */
+    .setlist-header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .setlist-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+
+    .setlist-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      line-height: 1.08;
+    }
+
+    .setlist-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.6rem auto 0;
+      opacity: 0.45;
+    }
+
+    /* ===================================================================
+       SONG CARDS
+    =================================================================== */
+    .song-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .song-card {
+      border-left: 2px solid var(--gold);
+      background: var(--bg-card);
+      transition: background 0.2s ease;
+    }
+
+    .song-card:hover {
+      background: var(--bg-card-hover);
+    }
+
+    /* ── Collapsed header (trigger) ───────────────────────────── */
+    .song-trigger {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.3rem 1.75rem;
+      cursor: pointer;
+      user-select: none;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      color: inherit;
+    }
+
+    .song-trigger:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: -1px;
+    }
+
+    .song-num {
+      font-family: var(--serif);
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--gold);
+      opacity: 0.6;
+      min-width: 1.6rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .song-name {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      flex: 1;
+      letter-spacing: 0.015em;
+      line-height: 1.2;
+    }
+
+    .song-badge {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--rule);
+      padding: 0.28rem 0.65rem;
+      flex-shrink: 0;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .song-chevron {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: transform 0.3s var(--ease-out), color 0.25s ease;
+    }
+
+    /* Open state overrides */
+    .song-card.is-open .song-badge {
+      color: var(--gold);
+      border-color: var(--gold-border);
+    }
+
+    .song-card.is-open .song-chevron {
+      transform: rotate(180deg);
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    /* ── Expandable details panel ─────────────────────────────── */
+    .song-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.42s var(--ease-out);
+    }
+
+    .song-card.is-open .song-details {
+      max-height: 700px;
+    }
+
+    .song-details-body {
+      padding: 0 1.75rem 2rem 3.35rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── Metadata grid ────────────────────────────────────────── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.4rem;
+      padding: 1.6rem 0 1.4rem;
+    }
+
+    .meta-label {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .meta-value {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* ── Arrangement notes ────────────────────────────────────── */
+    .song-notes {
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .song-notes .block-label {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .song-notes p {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ── Musicians ────────────────────────────────────────────── */
+    .song-musicians {
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .song-musicians .block-label {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .musician-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .musician-chip {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.75rem;
+      white-space: nowrap;
+    }
+
+    /* ── Actions: PDF + Audio ─────────────────────────────────── */
+    .song-actions {
+      padding: 1.3rem 0 0;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    /* PDF download button */
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.25s ease;
+      align-self: flex-start;
+    }
+
+    .btn-pdf:hover {
+      background: var(--gold-dim);
+    }
+
+    .btn-pdf svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* Audio player block */
+    .audio-block .block-label {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+
+    .audio-block audio {
+      width: 100%;
+      height: 36px;
+      outline: none;
+      accent-color: var(--gold);
+    }
+
+    /* Tint native audio controls on Webkit */
+    audio::-webkit-media-controls-panel {
+      background-color: #181818;
+    }
+
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+      color: var(--text-primary);
+    }
+
+
+    /* ===================================================================
+       FOOTER
+    =================================================================== */
+    footer {
+      background: var(--bg-deep);
+      border-top: 1px solid var(--rule);
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-copy {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .footer-copy em {
+      font-style: normal;
+      color: var(--gold);
+      opacity: 0.65;
+    }
+
+
+    /* ===================================================================
+       RESPONSIVE
+    =================================================================== */
+    @media (max-width: 560px) {
+      .song-badge          { display: none; }
+      .song-details-body   { padding-left: 1.75rem; }
+      .meta-grid           { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ====================================================================
+     SECTION 1: HERO
+==================================================================== -->
+<section id="hero" aria-label="Verlando Small: Reimagined">
+
+  <!-- ── Hero background photo ──────────────────────────────────────
+       FILE: verlando.jpg  (place in same folder as index.html)
+       Tip: Use a high-res portrait or stage photo. The dark overlay
+       handles readability — you don't need to pre-darken the image.
+  ────────────────────────────────────────────────────────────────── -->
+  <div class="hero-bg" role="img" aria-label="Hero background"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-content">
+
+    <!-- ── Logo ─────────────────────────────────────────────────────
+         FILE: logo.png  (place in same folder as index.html)
+         Recommended: transparent PNG, white/light version, ~400px wide.
+         A circular fallback placeholder is shown if the file is missing.
+    ─────────────────────────────────────────────────────────────── -->
+    <img
+      src="logo.png"
+      alt="Verlando Small"
+      class="hero-logo"
+      onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';"
+    />
+    <div id="logo-fallback" class="hero-logo-fallback" aria-hidden="true">Logo</div>
+
+    <!-- Eyebrow label above logotype -->
+    <p class="hero-eyebrow">A Weekend With</p>
+
+    <!-- ── Logotype ──────────────────────────────────────────────────
+         FILE: logotype.png  (place in same folder as index.html)
+         Recommended: transparent PNG, white/light version, wide crop.
+         Width auto-scales — no need to resize the source file.
+    ─────────────────────────────────────────────────────────────── -->
+    <h1>
+      <img
+        src="logotype.png"
+        alt="Verlando Small: Reimagined"
+        class="hero-logotype"
+      />
+    </h1>
+
+    <!-- Event tagline -->
+    <p class="hero-tagline">not a hot dog and plastic cup show.</p>
+
+    <!-- CTA — smooth-scrolls to #setlist -->
+    <a href="#setlist" class="btn-enter"><span>Enter</span></a>
+
+  </div>
+
+
+</section>
+
+
+<!-- ====================================================================
+     SECTION 2: SETLIST
+     ─────────────────────────────────────────────────────────────────
+     HOW TO EDIT:
+       Each song lives in a <div class="song-card"> block.
+       Look for the [EDIT] comments — those are the only lines you need
+       to change. Layout and styling require no modification.
+
+       File path conventions used throughout:
+         charts/song-XX-chart.pdf   → lead sheet / chart PDF
+         audio/song-XX-track.mp3    → backing track audio file
+
+       To add a song: copy any complete song-card block, paste below
+       the last one, and update the number + [EDIT] fields.
+==================================================================== -->
+<section id="setlist" aria-label="Setlist">
+  <div class="setlist-inner">
+
+    <header class="setlist-header">
+      <p class="setlist-eyebrow">The Programme</p>
+      <h2 class="setlist-title">Setlist</h2>
+      <div class="setlist-rule"></div>
+    </header>
+
+    <div class="song-list" role="list">
+
+
+      <!-- ==============================================================
+           SONG 01
+      ============================================================== -->
+      <div class="song-card" role="listitem">
+        <button class="song-trigger" aria-expanded="false" aria-controls="details-01">
+          <span class="song-num">01</span>
+          <!-- [EDIT] Song title displayed in collapsed row -->
+          <span class="song-name">Song Title One</span>
+          <!-- [EDIT] Short key label shown on the collapsed row (e.g. "C Maj", "F# Min", "Bb") -->
+          <span class="song-badge">C Maj</span>
+          <!-- Chevron icon — do not edit -->
+          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="song-details" id="details-01" role="region">
+          <div class="song-details-body">
+
+            <!-- Metadata -->
+            <div class="meta-grid">
+              <div>
+                <div class="meta-label">BPM</div>
+                <!-- [EDIT] Tempo in BPM -->
+                <div class="meta-value">112</div>
+              </div>
+              <div>
+                <div class="meta-label">Key</div>
+                <!-- [EDIT] Full key name -->
+                <div class="meta-value">C Major</div>
+              </div>
+              <div>
+                <div class="meta-label">Duration</div>
+                <!-- [EDIT] Approximate running time -->
+                <div class="meta-value">4:32</div>
+              </div>
+              <div>
+                <div class="meta-label">Feel</div>
+                <!-- [EDIT] Genre / feel tag -->
+                <div class="meta-value">Smooth Jazz</div>
+              </div>
+            </div>
+
+            <!-- Arrangement notes -->
+            <div class="song-notes">
+              <span class="block-label">Arrangement Notes</span>
+              <!-- [EDIT] Free-form arrangement / performance instructions -->
+              <p>Intro vamp is 8 bars. Take the head once through, solos order: keys → sax → guitar. Out chorus is double-time feel. Fade on the last turnaround.</p>
+            </div>
+
+            <!-- Musicians -->
+            <div class="song-musicians">
+              <div class="block-label">Musicians</div>
+              <div class="musician-chips">
+                <!-- [EDIT] Add or remove chips. Format: "Name — Instrument" -->
+                <span class="musician-chip">Verlando Small — Vocals</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+              </div>
+            </div>
+
+            <!-- PDF chart + audio player -->
+            <div class="song-actions">
+              <!-- [EDIT] Update href to the actual PDF file path -->
+              <a href="charts/song-01-chart.pdf" class="btn-pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Chart (PDF)
+              </a>
+              <div class="audio-block">
+                <span class="block-label">Backing Track</span>
+                <!-- [EDIT] Update src to the actual audio file path -->
+                <audio controls preload="none">
+                  <source src="audio/song-01-track.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- END SONG 01 -->
+
+
+      <!-- ==============================================================
+           SONG 02
+      ============================================================== -->
+      <div class="song-card" role="listitem">
+        <button class="song-trigger" aria-expanded="false" aria-controls="details-02">
+          <span class="song-num">02</span>
+          <!-- [EDIT] Song title -->
+          <span class="song-name">Song Title Two</span>
+          <!-- [EDIT] Short key label -->
+          <span class="song-badge">Bb Min</span>
+          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="song-details" id="details-02" role="region">
+          <div class="song-details-body">
+            <div class="meta-grid">
+              <div>
+                <div class="meta-label">BPM</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">88</div>
+              </div>
+              <div>
+                <div class="meta-label">Key</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">Bb Minor</div>
+              </div>
+              <div>
+                <div class="meta-label">Duration</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">5:10</div>
+              </div>
+              <div>
+                <div class="meta-label">Feel</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">Neo-Soul Ballad</div>
+              </div>
+            </div>
+            <div class="song-notes">
+              <span class="block-label">Arrangement Notes</span>
+              <!-- [EDIT] -->
+              <p>Open with solo piano intro (16 bars). Bring rhythm section in at verse 2. Bridge is rubato — follow the vocalist. String pad enters on the final chorus.</p>
+            </div>
+            <div class="song-musicians">
+              <div class="block-label">Musicians</div>
+              <div class="musician-chips">
+                <!-- [EDIT] -->
+                <span class="musician-chip">Verlando Small — Vocals</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+              </div>
+            </div>
+            <div class="song-actions">
+              <!-- [EDIT] -->
+              <a href="charts/song-02-chart.pdf" class="btn-pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Chart (PDF)
+              </a>
+              <div class="audio-block">
+                <span class="block-label">Backing Track</span>
+                <!-- [EDIT] -->
+                <audio controls preload="none">
+                  <source src="audio/song-02-track.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SONG 02 -->
+
+
+      <!-- ==============================================================
+           SONG 03
+      ============================================================== -->
+      <div class="song-card" role="listitem">
+        <button class="song-trigger" aria-expanded="false" aria-controls="details-03">
+          <span class="song-num">03</span>
+          <!-- [EDIT] Song title -->
+          <span class="song-name">Song Title Three</span>
+          <!-- [EDIT] Short key label -->
+          <span class="song-badge">E&#9837; Maj</span>
+          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="song-details" id="details-03" role="region">
+          <div class="song-details-body">
+            <div class="meta-grid">
+              <div>
+                <div class="meta-label">BPM</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">126</div>
+              </div>
+              <div>
+                <div class="meta-label">Key</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">Eb Major</div>
+              </div>
+              <div>
+                <div class="meta-label">Duration</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">3:55</div>
+              </div>
+              <div>
+                <div class="meta-label">Feel</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">Up-tempo Funk</div>
+              </div>
+            </div>
+            <div class="song-notes">
+              <span class="block-label">Arrangement Notes</span>
+              <!-- [EDIT] -->
+              <p>Full band from the top. Horn section stabs on the 2-and-4. Breakdown at the bridge — bass and drums only. Build back with full ensemble for the final 8. Hard out on the cue.</p>
+            </div>
+            <div class="song-musicians">
+              <div class="block-label">Musicians</div>
+              <div class="musician-chips">
+                <!-- [EDIT] -->
+                <span class="musician-chip">Verlando Small — Vocals</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+              </div>
+            </div>
+            <div class="song-actions">
+              <!-- [EDIT] -->
+              <a href="charts/song-03-chart.pdf" class="btn-pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Chart (PDF)
+              </a>
+              <div class="audio-block">
+                <span class="block-label">Backing Track</span>
+                <!-- [EDIT] -->
+                <audio controls preload="none">
+                  <source src="audio/song-03-track.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SONG 03 -->
+
+
+      <!-- ==============================================================
+           SONG 04
+      ============================================================== -->
+      <div class="song-card" role="listitem">
+        <button class="song-trigger" aria-expanded="false" aria-controls="details-04">
+          <span class="song-num">04</span>
+          <!-- [EDIT] Song title -->
+          <span class="song-name">Song Title Four</span>
+          <!-- [EDIT] Short key label -->
+          <span class="song-badge">G Min</span>
+          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="song-details" id="details-04" role="region">
+          <div class="song-details-body">
+            <div class="meta-grid">
+              <div>
+                <div class="meta-label">BPM</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">76</div>
+              </div>
+              <div>
+                <div class="meta-label">Key</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">G Minor</div>
+              </div>
+              <div>
+                <div class="meta-label">Duration</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">6:20</div>
+              </div>
+              <div>
+                <div class="meta-label">Feel</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">Jazz Ballad</div>
+              </div>
+            </div>
+            <div class="song-notes">
+              <span class="block-label">Arrangement Notes</span>
+              <!-- [EDIT] -->
+              <p>Sparse intro with guitar and vocals only. Rhythm section joins at the second verse. Extended outro vamp — modal feel, no chord changes. Bring it down slowly. Last note is vocalist alone, a cappella.</p>
+            </div>
+            <div class="song-musicians">
+              <div class="block-label">Musicians</div>
+              <div class="musician-chips">
+                <!-- [EDIT] -->
+                <span class="musician-chip">Verlando Small — Vocals</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+              </div>
+            </div>
+            <div class="song-actions">
+              <!-- [EDIT] -->
+              <a href="charts/song-04-chart.pdf" class="btn-pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Chart (PDF)
+              </a>
+              <div class="audio-block">
+                <span class="block-label">Backing Track</span>
+                <!-- [EDIT] -->
+                <audio controls preload="none">
+                  <source src="audio/song-04-track.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SONG 04 -->
+
+
+      <!-- ==============================================================
+           SONG 05
+      ============================================================== -->
+      <div class="song-card" role="listitem">
+        <button class="song-trigger" aria-expanded="false" aria-controls="details-05">
+          <span class="song-num">05</span>
+          <!-- [EDIT] Song title -->
+          <span class="song-name">Song Title Five</span>
+          <!-- [EDIT] Short key label -->
+          <span class="song-badge">D Maj</span>
+          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="song-details" id="details-05" role="region">
+          <div class="song-details-body">
+            <div class="meta-grid">
+              <div>
+                <div class="meta-label">BPM</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">98</div>
+              </div>
+              <div>
+                <div class="meta-label">Key</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">D Major</div>
+              </div>
+              <div>
+                <div class="meta-label">Duration</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">4:48</div>
+              </div>
+              <div>
+                <div class="meta-label">Feel</div>
+                <!-- [EDIT] -->
+                <div class="meta-value">R&amp;B Groove</div>
+              </div>
+            </div>
+            <div class="song-notes">
+              <span class="block-label">Arrangement Notes</span>
+              <!-- [EDIT] -->
+              <p>Click track throughout. Head is 32 bars AABA. Solos take the A section only. Return to head twice before the outro. Big band shout chorus on the final A.</p>
+            </div>
+            <div class="song-musicians">
+              <div class="block-label">Musicians</div>
+              <div class="musician-chips">
+                <!-- [EDIT] -->
+                <span class="musician-chip">Verlando Small — Vocals</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+                <span class="musician-chip">Musician Name — Instrument</span>
+              </div>
+            </div>
+            <div class="song-actions">
+              <!-- [EDIT] -->
+              <a href="charts/song-05-chart.pdf" class="btn-pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Chart (PDF)
+              </a>
+              <div class="audio-block">
+                <span class="block-label">Backing Track</span>
+                <!-- [EDIT] -->
+                <audio controls preload="none">
+                  <source src="audio/song-05-track.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SONG 05 -->
+
+
+      <!-- ==============================================================
+           ADD MORE SONGS
+           Copy the block above (from "SONG XX" comment to "END SONG XX"),
+           paste it here, increment the number, and fill in [EDIT] fields.
+      ============================================================== -->
+
+
+    </div><!-- end .song-list -->
+  </div><!-- end .setlist-inner -->
+</section>
+
+
+<!-- ====================================================================
+     FOOTER
+==================================================================== -->
+<footer>
+  <p class="footer-copy">
+    <em>Verlando Small: Reimagined</em> &nbsp;&middot;&nbsp; not a hot dog and plastic cup show.
+  </p>
+</footer>
+
+
+<!-- ====================================================================
+     JAVASCRIPT — Accordion
+     Clicking a song trigger toggles .is-open on the parent .song-card.
+     Only one card can be open at a time. Keyboard-accessible (Enter / Space).
+==================================================================== -->
+<script>
+(function () {
+  'use strict';
+
+  var cards = document.querySelectorAll('.song-card');
+
+  cards.forEach(function (card) {
+    var trigger = card.querySelector('.song-trigger');
+
+    function open() {
+      card.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function close() {
+      card.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggle() {
+      var isOpen = card.classList.contains('is-open');
+
+      // Close every card first
+      cards.forEach(function (other) {
+        other.classList.remove('is-open');
+        other.querySelector('.song-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Re-open this one if it wasn't already open
+      if (!isOpen) open();
+    }
+
+    trigger.addEventListener('click', toggle);
+
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+}());
+</script>
+
+</body>
+</html>
