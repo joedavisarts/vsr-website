@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verlando Small: Reimagined</title>
@@ -8,8 +8,8 @@
 
   <!-- Google Fonts: Cormorant Garamond (headings) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet">
 
   <style>
     /* ===================================================================
@@ -27,8 +27,8 @@
       --text-secondary:#7a7a7a;
       --text-muted:    #444444;
       --rule:          rgba(255, 255, 255, 0.06);
-      --serif:         'Cormorant Garamond', Georgia, serif;
-      --sans:          'DM Sans', system-ui, -apple-system, sans-serif;
+      --serif: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --ease-out:      cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -88,7 +88,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.2);
       z-index: 1;
     }
 
@@ -161,6 +161,7 @@
       letter-spacing: 0.22em;
       color: var(--text-secondary);
       margin-top: -0.4rem;
+      text-transform: none;
     }
 
     /* ── Enter button ─────────────────────────────────────────── */
@@ -308,7 +309,7 @@
     .song-name {
       font-family: var(--serif);
       font-size: 1.4rem;
-      font-weight: 400;
+      font-weight: 300;
       color: var(--text-primary);
       flex: 1;
       letter-spacing: 0.015em;
@@ -320,7 +321,7 @@
       font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.18em;
-      text-transform: uppercase;
+      text-transform: none;
       color: var(--text-muted);
       border: 1px solid var(--rule);
       padding: 0.28rem 0.65rem;
@@ -356,7 +357,8 @@
     }
 
     .song-card.is-open .song-details {
-      max-height: 700px;
+      max-height: 1500px;
+      overflow-y: auto;
     }
 
     .song-details-body {
@@ -876,8 +878,10 @@
     display: none !important;
 }
   </style>
+
+
 </head>
-<body>
+<body class="has-edits editor-mode">
 
 
 <!-- ====================================================================
@@ -900,12 +904,7 @@
          Recommended: transparent PNG, white/light version, ~400px wide.
          A circular fallback placeholder is shown if the file is missing.
     ─────────────────────────────────────────────────────────────── -->
-    <img
-      src="logo.png"
-      alt="Verlando Small"
-      class="hero-logo"
-      onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';"
-    />
+    <img src="logo.png" alt="Verlando Small" class="hero-logo" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
     <div id="logo-fallback" class="hero-logo-fallback" aria-hidden="true">Logo</div>
 
     <!-- Eyebrow label above logotype -->
@@ -917,15 +916,11 @@
          Width auto-scales — no need to resize the source file.
     ─────────────────────────────────────────────────────────────── -->
     <h1>
-      <img
-        src="logotype.png"
-        alt="Verlando Small: Reimagined"
-        class="hero-logotype"
-      />
+      <img src="logotype.png" alt="Verlando Small: Reimagined" class="hero-logotype">
     </h1>
 
     <!-- Event tagline -->
-    <p class="hero-tagline">not a hot dog and plastic cup show.</p>
+    <p class="hero-tagline">Not a hot dog and plastic cup show.</p>
 
     <!-- CTA — smooth-scrolls to #setlist -->
     <a href="#setlist" class="btn-enter"><span>Enter</span></a>
@@ -977,7 +972,7 @@
       <!-- ==============================================================
            SONG 01  |  data-day="1" = Day One  /  data-day="2" = Day Two
       ============================================================== -->
-      <div class="song-card" role="listitem" data-day="1">
+      <div class="song-card" role="listitem" data-day="1" draggable="true" style="">
         <div class="song-editor-controls" aria-hidden="true">
           <button class="btn-edit-song" type="button">Edit</button>
           <button class="btn-delete-song" type="button">Delete</button>
@@ -987,11 +982,11 @@
         <button class="song-trigger" aria-expanded="false" aria-controls="details-01">
           <span class="song-num">01</span>
           <!-- [EDIT] Song title displayed in collapsed row -->
-          <span class="song-name">Song Title One</span>
+          <span class="song-name">Show Intro</span>
           <!-- [EDIT] Short key label shown on the collapsed row (e.g. "C Maj", "F# Min", "Bb") -->
-          <span class="song-badge">C Maj</span>
+          <span class="song-badge">F#</span>
           <!-- Chevron icon — do not edit -->
-          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
 
         <div class="song-details" id="details-01" role="region">
@@ -1002,22 +997,22 @@
               <div>
                 <div class="meta-label">BPM</div>
                 <!-- [EDIT] Tempo in BPM -->
-                <div class="meta-value">112</div>
+                <div class="meta-value">109</div>
               </div>
               <div>
                 <div class="meta-label">Key</div>
                 <!-- [EDIT] Full key name -->
-                <div class="meta-value">C Major</div>
+                <div class="meta-value">F# major</div>
               </div>
               <div>
                 <div class="meta-label">Duration</div>
                 <!-- [EDIT] Approximate running time -->
-                <div class="meta-value">4:32</div>
+                <div class="meta-value">0:52</div>
               </div>
               <div>
                 <div class="meta-label">Feel</div>
                 <!-- [EDIT] Genre / feel tag -->
-                <div class="meta-value">Smooth Jazz</div>
+                <div class="meta-value">Massive</div>
               </div>
             </div>
 
@@ -1025,33 +1020,27 @@
             <div class="song-notes">
               <span class="block-label">Arrangement Notes</span>
               <!-- [EDIT] Free-form arrangement / performance instructions -->
-              <p>Intro vamp is 8 bars. Take the head once through, solos order: keys → sax → guitar. Out chorus is double-time feel. Fade on the last turnaround.</p>
+              <p>GENERAL: Verlando won't be playing on this one. This should be played massively. Show intro vibes. The beginning of string section in the middle should be DEAD silent instrumentally til y'all come in to play along with them.<br><br>KEYS: Audale, gimme a piano with a warm pad underneath (not the regular sawtooth arrangement pad that is in majority of arrangements nowadays, I put a hint of that in the stem).<br><br>DRUMS: Bobby I'mma need you to chooooke the hell out of that cymbal lol. <br><br>GUITARS: Groski and Bindii are going to be playing the line simultaneously an octave apart (yes, as opposed to using a pedal, both of your tones would sound really nice on top of each other (Y)). We'll decide which tone is better for which octave in the rehearsal, but familiarize yourselves with both, so that you can understand where everything lies if you need to change in the moment.<br><br>But yes! That's the vibe for this one. Goes straight into verlando's original. It's the same BPM and key, so this ends a bar before it should start. (there's a bar silence)</p>
             </div>
 
             <!-- Musicians -->
             <div class="song-musicians">
               <div class="block-label">Musicians</div>
-              <div class="musician-chips">
-                <!-- [EDIT] Add or remove chips. Format: "Name — Instrument" -->
-                <span class="musician-chip">Verlando Small — Vocals</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-              </div>
+              <div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div>
             </div>
 
             <!-- PDF chart + audio player -->
             <div class="song-actions">
               <!-- [EDIT] Update href to the actual PDF file path -->
-              <a href="charts/song-01-chart.pdf" class="btn-pdf" download>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <a href="charts/1 Verlando Small Reimagined - Intro (Number Chart).pdf" class="btn-pdf" download="">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Download Chart (PDF)
               </a>
               <div class="audio-block">
                 <span class="block-label">Backing Track</span>
                 <!-- [EDIT] Update src to the actual audio file path -->
-                <audio controls preload="none">
-                  <source src="audio/song-01-track.mp3" type="audio/mpeg">
+                <audio controls="" preload="none">
+                  <source src="audio/1. Show Intro - Verlando Small Reimagined.mp3" type="audio/mpeg">
                   Your browser does not support the audio element.
                 </audio>
               </div>
@@ -1059,322 +1048,35 @@
 
           </div>
         </div>
-      </div>
+      </div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-11-1777921505477"><span class="song-num">02</span><span class="song-name">Evan &amp; Verlando's Original</span><span class="song-badge">F#</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-11-1777921505477" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">109</div></div><div><div class="meta-label">Key</div><div class="meta-value">F# major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">5:26</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Playful</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>This is the song that introduces verlando. Starts with just Joe, Malcolm, and Bobby. Then Bindii comes in, then Audale comes in, then groski comes in.Remember that we're all coming in for the line at the end of the first chorus. After playing the line, swell to DEAD silence. Then the little "DUN DUN" before the verse starts again.Remember the band line in the second Pre Chorus.Second chorus goes into the little bridge section.Bridge section is stripped down to ALMOST nothing. Light keys, bass playing chords up the top. Verlando playing very flittery-flattery. Bobby raindrops on cymbals.Then after 8 bars, we bring it back up to big-ness.Remember the LINE to go to the modulation. And we modulate again immediately. Remember to LOOK AT VERLANDO for the cues for the last four notes of the song. Stay there, swell for a second. and then we swell out into the next song.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/2. Evan &amp; Verlando's original (Working Recording).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-04-1777919842754"><span class="song-num">03</span><span class="song-name">Mind and Body</span><span class="song-badge">C</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-04-1777919842754" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">90</div></div><div><div class="meta-label">Key</div><div class="meta-value">C major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">2:48</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Ambient/Calm</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>No arrangement. Played exactly like the record. Just remember to approach the song percussively after the second chorus.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/3. Mind &amp; Body - Vence Ray ft. Verlando Small.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-05-1777920086552"><span class="song-num">04</span><span class="song-name">Write Your Name Across My Heart</span><span class="song-badge">G</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-05-1777920086552" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">132</div></div><div><div class="meta-label">Key</div><div class="meta-value">G major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:45</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Ambient/Calm</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Play exactly like record. The transition into the next song is in the chart, but it is as follows:3 4 6 5 | in A3 4 6 7 | in APassing/transition chord: 1/3 in F major (aka Fmaj/A)3 4 6 5 | in F3 4 6 5sus | in F (hold the 5)Then into stuck on you</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/4. Write your name across my heart - Kenny Rogers (Verlando Small Cover).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-06-1777920374750"><span class="song-num">05</span><span class="song-name">Stuck On You</span><span class="song-badge">F</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-06-1777920374750" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">138</div></div><div><div class="meta-label">Key</div><div class="meta-value">F major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:00</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Ambient/Calm</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Played exactly like the record, only thing to remember is the bridge syncopations. (and remember the extra bar after the final chorus).</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/5. Stuck on You - Lionel Richie (Verlando Small Cover).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-07-1777920507267"><span class="song-num">06</span><span class="song-name">Can We Talk</span><span class="song-badge">F</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-07-1777920507267" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">90</div></div><div><div class="meta-label">Key</div><div class="meta-value">F major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:00</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Arrangement lol</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Okay so it plays exactly like the arrangement, up until the breakdown. In the breakdown:1. I take the first half playing the bassline with Malcolm2. We all come in for the 4sus, #4sus, 53. Bindii and I would then play the bassline (bindii deadpicking)4. We all come in for the Chorus following.OMIT THE HITS AT 4:10. We are ending the song on the melody at that point."Girl I waaant to know your NAME" (Name is the lyric we end on).The last chord will be the 4 chord of D major (Aka G major). That is the chord we swell out to.. and then Nico would start with the intro of Best Part.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/6. Can We Talk - Tevin Campbell (Joe Davis Arrarangement).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-08-1777920852914"><span class="song-num">07</span><span class="song-name">Best Part</span><span class="song-badge">D</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-08-1777920852914" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">150</div></div><div><div class="meta-label">Key</div><div class="meta-value">D major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:30</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Smooth</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Best Part, the actual arrangement is pretty much like the record. We just do the bridge for an extra pass (the song does 3, we're doing 4). After the bridge passes, Audale and Verlando, I would love if y'all could do a chorus of just y'all alone. Ital. And then we all come in to swell on the one.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/7. Daniel Caesar - Best Part (Official Audio) ft. H.E.R..mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-09-1777921059512"><span class="song-num">08</span><span class="song-name">I Wanna Know (Loving You Intro)</span><span class="song-badge">G</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-09-1777921059512" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">130</div></div><div><div class="meta-label">Key</div><div class="meta-value">G major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:30</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Smooth</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Starts with "Loving You" by Minnie Riperton, just the first two lines (Like the reference file below). And then we all come in with the reggae version. We're doing this ital so treat it like a regular reggae live performance lol. Second verse dub.. Chorus after, half riddim, half full. Bridge part, come WAY down. And build it back up for the chorus. Tag the ending 3x.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/8. I Wanna Know - Joe (Kirk Whalum Version).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="1" draggable="true" style=""><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-10-1777921392361"><span class="song-num">09</span><span class="song-name">Stay With Me</span><span class="song-badge">C</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-10-1777921392361" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">85</div></div><div><div class="meta-label">Key</div><div class="meta-value">C</div></div><div><div class="meta-label">Duration</div><div class="meta-value">2:53</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Smooth Pop</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>This song is literally played exactly like the record. Listen the file and you'll know your spots lol.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/9. Stay with me - Sam Smith (Saxophone TV Track).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div>
       <!-- END SONG 01 -->
 
 
       <!-- ==============================================================
            SONG 02
       ============================================================== -->
-      <div class="song-card" role="listitem" data-day="1">
-        <div class="song-editor-controls" aria-hidden="true">
-          <button class="btn-edit-song" type="button">Edit</button>
-          <button class="btn-delete-song" type="button">Delete</button>
-          <button class="btn-duplicate-song" type="button">Duplicate</button>
-          <button class="btn-duplicate-other-day" type="button">To Other Day</button>
-        </div>
-        <button class="song-trigger" aria-expanded="false" aria-controls="details-02">
-          <span class="song-num">02</span>
-          <!-- [EDIT] Song title -->
-          <span class="song-name">Song Title Two</span>
-          <!-- [EDIT] Short key label -->
-          <span class="song-badge">Bb Min</span>
-          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-
-        <div class="song-details" id="details-02" role="region">
-          <div class="song-details-body">
-            <div class="meta-grid">
-              <div>
-                <div class="meta-label">BPM</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">88</div>
-              </div>
-              <div>
-                <div class="meta-label">Key</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">Bb Minor</div>
-              </div>
-              <div>
-                <div class="meta-label">Duration</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">5:10</div>
-              </div>
-              <div>
-                <div class="meta-label">Feel</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">Neo-Soul Ballad</div>
-              </div>
-            </div>
-            <div class="song-notes">
-              <span class="block-label">Arrangement Notes</span>
-              <!-- [EDIT] -->
-              <p>Open with solo piano intro (16 bars). Bring rhythm section in at verse 2. Bridge is rubato — follow the vocalist. String pad enters on the final chorus.</p>
-            </div>
-            <div class="song-musicians">
-              <div class="block-label">Musicians</div>
-              <div class="musician-chips">
-                <!-- [EDIT] -->
-                <span class="musician-chip">Verlando Small — Vocals</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-              </div>
-            </div>
-            <div class="song-actions">
-              <!-- [EDIT] -->
-              <a href="charts/song-02-chart.pdf" class="btn-pdf" download>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Chart (PDF)
-              </a>
-              <div class="audio-block">
-                <span class="block-label">Backing Track</span>
-                <!-- [EDIT] -->
-                <audio controls preload="none">
-                  <source src="audio/song-02-track.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <!-- END SONG 02 -->
 
 
       <!-- ==============================================================
            SONG 03
       ============================================================== -->
-      <div class="song-card" role="listitem" data-day="1">
-        <div class="song-editor-controls" aria-hidden="true">
-          <button class="btn-edit-song" type="button">Edit</button>
-          <button class="btn-delete-song" type="button">Delete</button>
-          <button class="btn-duplicate-song" type="button">Duplicate</button>
-          <button class="btn-duplicate-other-day" type="button">To Other Day</button>
-        </div>
-        <button class="song-trigger" aria-expanded="false" aria-controls="details-03">
-          <span class="song-num">03</span>
-          <!-- [EDIT] Song title -->
-          <span class="song-name">Song Title Three</span>
-          <!-- [EDIT] Short key label -->
-          <span class="song-badge">E&#9837; Maj</span>
-          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-
-        <div class="song-details" id="details-03" role="region">
-          <div class="song-details-body">
-            <div class="meta-grid">
-              <div>
-                <div class="meta-label">BPM</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">126</div>
-              </div>
-              <div>
-                <div class="meta-label">Key</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">Eb Major</div>
-              </div>
-              <div>
-                <div class="meta-label">Duration</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">3:55</div>
-              </div>
-              <div>
-                <div class="meta-label">Feel</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">Up-tempo Funk</div>
-              </div>
-            </div>
-            <div class="song-notes">
-              <span class="block-label">Arrangement Notes</span>
-              <!-- [EDIT] -->
-              <p>Full band from the top. Horn section stabs on the 2-and-4. Breakdown at the bridge — bass and drums only. Build back with full ensemble for the final 8. Hard out on the cue.</p>
-            </div>
-            <div class="song-musicians">
-              <div class="block-label">Musicians</div>
-              <div class="musician-chips">
-                <!-- [EDIT] -->
-                <span class="musician-chip">Verlando Small — Vocals</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-              </div>
-            </div>
-            <div class="song-actions">
-              <!-- [EDIT] -->
-              <a href="charts/song-03-chart.pdf" class="btn-pdf" download>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Chart (PDF)
-              </a>
-              <div class="audio-block">
-                <span class="block-label">Backing Track</span>
-                <!-- [EDIT] -->
-                <audio controls preload="none">
-                  <source src="audio/song-03-track.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <!-- END SONG 03 -->
 
 
       <!-- ==============================================================
            SONG 04
       ============================================================== -->
-      <div class="song-card" role="listitem" data-day="2">
-        <div class="song-editor-controls" aria-hidden="true">
-          <button class="btn-edit-song" type="button">Edit</button>
-          <button class="btn-delete-song" type="button">Delete</button>
-          <button class="btn-duplicate-song" type="button">Duplicate</button>
-          <button class="btn-duplicate-other-day" type="button">To Other Day</button>
-        </div>
-        <button class="song-trigger" aria-expanded="false" aria-controls="details-04">
-          <span class="song-num">04</span>
-          <!-- [EDIT] Song title -->
-          <span class="song-name">Song Title Four</span>
-          <!-- [EDIT] Short key label -->
-          <span class="song-badge">G Min</span>
-          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-
-        <div class="song-details" id="details-04" role="region">
-          <div class="song-details-body">
-            <div class="meta-grid">
-              <div>
-                <div class="meta-label">BPM</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">76</div>
-              </div>
-              <div>
-                <div class="meta-label">Key</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">G Minor</div>
-              </div>
-              <div>
-                <div class="meta-label">Duration</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">6:20</div>
-              </div>
-              <div>
-                <div class="meta-label">Feel</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">Jazz Ballad</div>
-              </div>
-            </div>
-            <div class="song-notes">
-              <span class="block-label">Arrangement Notes</span>
-              <!-- [EDIT] -->
-              <p>Sparse intro with guitar and vocals only. Rhythm section joins at the second verse. Extended outro vamp — modal feel, no chord changes. Bring it down slowly. Last note is vocalist alone, a cappella.</p>
-            </div>
-            <div class="song-musicians">
-              <div class="block-label">Musicians</div>
-              <div class="musician-chips">
-                <!-- [EDIT] -->
-                <span class="musician-chip">Verlando Small — Vocals</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-              </div>
-            </div>
-            <div class="song-actions">
-              <!-- [EDIT] -->
-              <a href="charts/song-04-chart.pdf" class="btn-pdf" download>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Chart (PDF)
-              </a>
-              <div class="audio-block">
-                <span class="block-label">Backing Track</span>
-                <!-- [EDIT] -->
-                <audio controls preload="none">
-                  <source src="audio/song-04-track.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <!-- END SONG 04 -->
 
 
       <!-- ==============================================================
            SONG 05
       ============================================================== -->
-      <div class="song-card" role="listitem" data-day="2">
-        <div class="song-editor-controls" aria-hidden="true">
-          <button class="btn-edit-song" type="button">Edit</button>
-          <button class="btn-delete-song" type="button">Delete</button>
-          <button class="btn-duplicate-song" type="button">Duplicate</button>
-          <button class="btn-duplicate-other-day" type="button">To Other Day</button>
-        </div>
-        <button class="song-trigger" aria-expanded="false" aria-controls="details-05">
-          <span class="song-num">05</span>
-          <!-- [EDIT] Song title -->
-          <span class="song-name">Song Title Five</span>
-          <!-- [EDIT] Short key label -->
-          <span class="song-badge">D Maj</span>
-          <svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-
-        <div class="song-details" id="details-05" role="region">
-          <div class="song-details-body">
-            <div class="meta-grid">
-              <div>
-                <div class="meta-label">BPM</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">98</div>
-              </div>
-              <div>
-                <div class="meta-label">Key</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">D Major</div>
-              </div>
-              <div>
-                <div class="meta-label">Duration</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">4:48</div>
-              </div>
-              <div>
-                <div class="meta-label">Feel</div>
-                <!-- [EDIT] -->
-                <div class="meta-value">R&amp;B Groove</div>
-              </div>
-            </div>
-            <div class="song-notes">
-              <span class="block-label">Arrangement Notes</span>
-              <!-- [EDIT] -->
-              <p>Click track throughout. Head is 32 bars AABA. Solos take the A section only. Return to head twice before the outro. Big band shout chorus on the final A.</p>
-            </div>
-            <div class="song-musicians">
-              <div class="block-label">Musicians</div>
-              <div class="musician-chips">
-                <!-- [EDIT] -->
-                <span class="musician-chip">Verlando Small — Vocals</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-                <span class="musician-chip">Musician Name — Instrument</span>
-              </div>
-            </div>
-            <div class="song-actions">
-              <!-- [EDIT] -->
-              <a href="charts/song-05-chart.pdf" class="btn-pdf" download>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Chart (PDF)
-              </a>
-              <div class="audio-block">
-                <span class="block-label">Backing Track</span>
-                <!-- [EDIT] -->
-                <audio controls preload="none">
-                  <source src="audio/song-05-track.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <!-- END SONG 05 -->
 
 
@@ -1388,7 +1090,7 @@
       ============================================================== -->
 
 
-    </div><!-- end .song-list -->
+    <div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-04-1777913039467"><span class="song-num">01</span><span class="song-name">Show Intro</span><span class="song-badge">Eb-</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-04-1777913039467" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">109</div></div><div><div class="meta-label">Key</div><div class="meta-value">Eb minor</div></div><div><div class="meta-label">Duration</div><div class="meta-value">0:52</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Massive</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Verlando won't be playing on this one. This should be played massively. Show intro vibes. Audale, gimme a piano with a warm pad underneath (not the regular sawtooth arrangement pad that is in majority of arrangements nowadays, I put a hint of that in the stem). The beginning of string section in the middle should be DEAD silent instrumentally til y'all come in to play along with them. Bobby I'mma need you to chooooke the hell out of that cymbal lol. But yes! That's the vibe for this one. Goes straight into verlando's original. It's the same BPM and key, so this ends a bar before it should start. (there's a bar silence)</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="charts/1 Verlando Small Reimagined - Intro (Number Chart).pdf" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/1. Show Intro - Verlando Small Reimagined.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-12-1777921506594"><span class="song-num">02</span><span class="song-name">Evan &amp; Verlando's Original</span><span class="song-badge">F#</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-12-1777921506594" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">109</div></div><div><div class="meta-label">Key</div><div class="meta-value">F# major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">5:26</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Playful</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>This is the song that introduces verlando. Starts with just Joe, Malcolm, and Bobby. Then Bindii comes in, then Audale comes in, then groski comes in.Remember that we're all coming in for the line at the end of the first chorus. After playing the line, swell to DEAD silence. Then the little "DUN DUN" before the verse starts again.Remember the band line in the second Pre Chorus.Second chorus goes into the little bridge section.Bridge section is stripped down to ALMOST nothing. Light keys, bass playing chords up the top. Verlando playing very flittery-flattery. Bobby raindrops on cymbals.Then after 8 bars, we bring it back up to big-ness.Remember the LINE to go to the modulation. And we modulate again immediately. Remember to LOOK AT VERLANDO for the cues for the last four notes of the song. Stay there, swell for a second. and then we swell out into the next song.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/2. Evan &amp; Verlando's original (Working Recording).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-12-1777921512828"><span class="song-num">03</span><span class="song-name">Mind and Body</span><span class="song-badge">C</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-12-1777921512828" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">90</div></div><div><div class="meta-label">Key</div><div class="meta-value">C major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">2:48</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Ambient/Calm</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>No arrangement. Played exactly like the record. Just remember to approach the song percussively after the second chorus.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/3. Mind &amp; Body - Vence Ray ft. Verlando Small.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-13-1777921513809"><span class="song-num">04</span><span class="song-name">Write Your Name Across My Heart</span><span class="song-badge">G</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-13-1777921513809" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">132</div></div><div><div class="meta-label">Key</div><div class="meta-value">G major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:45</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Ambient/Calm</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Play exactly like record. The transition into the next song is in the chart, but it is as follows:3 4 6 5 | in A3 4 6 7 | in APassing/transition chord: 1/3 in F major (aka Fmaj/A)3 4 6 5 | in F3 4 6 5sus | in F (hold the 5)Then into stuck on you</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/4. Write your name across my heart - Kenny Rogers (Verlando Small Cover).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-14-1777921514676"><span class="song-num">05</span><span class="song-name">Stuck On You</span><span class="song-badge">F</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-14-1777921514676" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">138</div></div><div><div class="meta-label">Key</div><div class="meta-value">F major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:00</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Ambient/Calm</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Played exactly like the record, only thing to remember is the bridge syncopations. (and remember the extra bar after the final chorus).</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/5. Stuck on You - Lionel Richie (Verlando Small Cover).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-15-1777921515327"><span class="song-num">06</span><span class="song-name">Can We Talk</span><span class="song-badge">F</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-15-1777921515327" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">90</div></div><div><div class="meta-label">Key</div><div class="meta-value">F major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:00</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Arrangement lol</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Okay so it plays exactly like the arrangement, up until the breakdown. In the breakdown:1. I take the first half playing the bassline with Malcolm2. We all come in for the 4sus, #4sus, 53. Bindii and I would then play the bassline (bindii deadpicking)4. We all come in for the Chorus following.OMIT THE HITS AT 4:10. We are ending the song on the melody at that point."Girl I waaant to know your NAME" (Name is the lyric we end on).The last chord will be the 4 chord of D major (Aka G major). That is the chord we swell out to.. and then Nico would start with the intro of Best Part.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/6. Can We Talk - Tevin Campbell (Joe Davis Arrarangement).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-16-1777921516993"><span class="song-num">07</span><span class="song-name">Best Part</span><span class="song-badge">D</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-16-1777921516993" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">150</div></div><div><div class="meta-label">Key</div><div class="meta-value">D major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:30</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Smooth</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Best Part, the actual arrangement is pretty much like the record. We just do the bridge for an extra pass (the song does 3, we're doing 4). After the bridge passes, Audale and Verlando, I would love if y'all could do a chorus of just y'all alone. Ital. And then we all come in to swell on the one.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/7. Daniel Caesar - Best Part (Official Audio) ft. H.E.R..mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-17-1777921517610"><span class="song-num">08</span><span class="song-name">I Wanna Know (Loving You Intro)</span><span class="song-badge">G</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-17-1777921517610" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">130</div></div><div><div class="meta-label">Key</div><div class="meta-value">G major</div></div><div><div class="meta-label">Duration</div><div class="meta-value">3:30</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Smooth</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>Starts with "Loving You" by Minnie Riperton, just the first two lines (Like the reference file below). And then we all come in with the reggae version. We're doing this ital so treat it like a regular reggae live performance lol. Second verse dub.. Chorus after, half riddim, half full. Bridge part, come WAY down. And build it back up for the chorus. Tag the ending 3x.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/8. I Wanna Know - Joe (Kirk Whalum Version).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div><div class="song-card" role="listitem" data-day="2" draggable="true" style="display: none;"><div class="song-editor-controls" aria-hidden="true"><button class="btn-edit-song" type="button">Edit</button><button class="btn-duplicate-song" type="button">Duplicate</button><button class="btn-duplicate-other-day" type="button">To Other Day</button><button class="btn-delete-song" type="button">Delete</button></div><button class="song-trigger" aria-expanded="false" aria-controls="details-18-1777921518310"><span class="song-num">09</span><span class="song-name">Stay With Me</span><span class="song-badge">C</span><svg class="song-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="song-details" id="details-18-1777921518310" role="region"><div class="song-details-body"><div class="meta-grid"><div><div class="meta-label">BPM</div><div class="meta-value">85</div></div><div><div class="meta-label">Key</div><div class="meta-value">C</div></div><div><div class="meta-label">Duration</div><div class="meta-value">2:53</div></div><div><div class="meta-label">Feel</div><div class="meta-value">Smooth Pop</div></div></div><div class="song-notes"><span class="block-label">Arrangement Notes</span><p>This song is literally played exactly like the record. Listen the file and you'll know your spots lol.</p></div><div class="song-musicians"><div class="block-label">Musicians</div><div class="musician-chips"><span class="musician-chip">Verlando Small: Saxophonist</span><span class="musician-chip">Joseph Davis: Bassist</span><span class="musician-chip">Nicolas Groskopf: Guitarist</span><span class="musician-chip">Brandon Benjamin: Guitarist</span><span class="musician-chip">Colin "Bobby" Phillips: Drummer</span><span class="musician-chip">Robert Malcolm: Percussion</span></div></div><div class="song-actions"><a href="" class="btn-pdf" download=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Chart (PDF)</a><div class="audio-block"><span class="block-label">Backing Track</span><audio controls="" preload="none"><source src="audio/9. Stay with me - Sam Smith (Saxophone TV Track).mp3" type="audio/mpeg">Your browser does not support the audio element.</audio></div></div></div></div></div></div><!-- end .song-list -->
 
     <!-- ADD SONG — only visible in editor mode -->
     <button class="btn-add-song" type="button" id="add-song-btn">+ Add Song</button>
@@ -1402,7 +1104,7 @@
 ==================================================================== -->
 <footer>
   <p class="footer-copy">
-    <em>Verlando Small: Reimagined</em> &nbsp;&middot;&nbsp; not a hot dog and plastic cup show.
+    <em>Verlando Small: Reimagined</em> &nbsp;·&nbsp; Not a hot dog and plastic cup show.
   </p>
 </footer>
 
@@ -1418,8 +1120,8 @@
 ==================================================================== -->
 <div id="song-modal" class="modal-overlay" aria-hidden="true">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
-    <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
-    <h3 class="modal-title" id="modal-heading">Add Song</h3>
+    <button class="modal-close" id="modal-close-btn" aria-label="Close">×</button>
+    <h3 class="modal-title" id="modal-heading">Edit Song</h3>
 
     <div class="form-row">
       <div class="form-group">
@@ -1456,12 +1158,12 @@
 
     <div class="form-group">
       <label class="form-label" for="field-notes">Arrangement Notes</label>
-      <textarea class="form-textarea" id="field-notes" placeholder="Notes about the arrangement..."></textarea>
+      <textarea class="form-textarea" id="field-notes" placeholder="Notes about the arrangement..." style="height: 75px;"></textarea>
     </div>
 
     <div class="form-group">
       <div class="form-label">Musicians</div>
-      <div class="musicians-editor" id="musicians-editor"></div>
+      <div class="musicians-editor" id="musicians-editor"><div class="musician-row"><input type="text" class="form-input" placeholder="Name — Instrument"><button type="button" class="btn-remove-musician">×</button></div><div class="musician-row"><input type="text" class="form-input" placeholder="Name — Instrument"><button type="button" class="btn-remove-musician">×</button></div><div class="musician-row"><input type="text" class="form-input" placeholder="Name — Instrument"><button type="button" class="btn-remove-musician">×</button></div><div class="musician-row"><input type="text" class="form-input" placeholder="Name — Instrument"><button type="button" class="btn-remove-musician">×</button></div><div class="musician-row"><input type="text" class="form-input" placeholder="Name — Instrument"><button type="button" class="btn-remove-musician">×</button></div><div class="musician-row"><input type="text" class="form-input" placeholder="Name — Instrument"><button type="button" class="btn-remove-musician">×</button></div></div>
       <button type="button" class="btn-add-musician" id="btn-add-musician">+ Add Musician</button>
     </div>
 
@@ -1678,6 +1380,15 @@ var EDITOR_ENABLED = FORCE_EDITOR !== null ? FORCE_EDITOR : isLocal;
   });
 }
 
+
+function liveUpdateCard() {
+  if (!editingCard) return;
+
+  var data = readForm();
+  applyDataToCard(editingCard, data);
+  markDirty();
+}
+
   /* ─────────────────────────────────────────────────────────────────
      MODAL — open / close
   ───────────────────────────────────────────────────────────────── */
@@ -1715,15 +1426,36 @@ var EDITOR_ENABLED = FORCE_EDITOR !== null ? FORCE_EDITOR : isLocal;
     rm.type = 'button';
     rm.className = 'btn-remove-musician';
     rm.textContent = '×';
-    rm.addEventListener('click', function () { row.remove(); });
+    rm.addEventListener('click', function () {
+  row.remove();
+  liveUpdateCard();
+});
     row.appendChild(inp);
     row.appendChild(rm);
     musEditor.appendChild(row);
+    inp.addEventListener('input', liveUpdateCard);
   }
 
   document.getElementById('btn-add-musician').addEventListener('click', function () {
     addMusicianRow('');
   });
+
+[
+  'field-title',
+  'field-badge',
+  'field-bpm',
+  'field-key',
+  'field-duration',
+  'field-feel',
+  'field-notes',
+  'field-pdf',
+  'field-audio'
+].forEach(function (id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+
+  el.addEventListener('input', liveUpdateCard);
+});
 
   /* ─────────────────────────────────────────────────────────────────
      MODAL — read / populate / clear form
@@ -1796,7 +1528,7 @@ var EDITOR_ENABLED = FORCE_EDITOR !== null ? FORCE_EDITOR : isLocal;
     if (mv[2]) mv[2].textContent = d.duration;
     if (mv[3]) mv[3].textContent = d.feel;
     var notesP = card.querySelector('.song-notes p');
-    if (notesP) notesP.textContent = d.notes;
+    if (notesP) notesP.innerHTML = d.notes.replace(/\n/g, '<br>');
     var chips = card.querySelector('.musician-chips');
     if (chips) {
       chips.innerHTML = '';
@@ -1849,6 +1581,7 @@ var EDITOR_ENABLED = FORCE_EDITOR !== null ? FORCE_EDITOR : isLocal;
       '<div class="song-editor-controls" aria-hidden="true">' +
         '<button class="btn-edit-song" type="button">Edit</button>' +
         '<button class="btn-duplicate-song" type="button">Duplicate</button>' +
+        '<button class="btn-duplicate-other-day" type="button">To Other Day</button>' +
         '<button class="btn-delete-song" type="button">Delete</button>' +
       '</div>' +
       '<button class="song-trigger" aria-expanded="false" aria-controls="' + uid + '">' +
@@ -1867,7 +1600,7 @@ var EDITOR_ENABLED = FORCE_EDITOR !== null ? FORCE_EDITOR : isLocal;
           '</div>' +
           '<div class="song-notes">' +
             '<span class="block-label">Arrangement Notes</span>' +
-            '<p>' + esc(d.notes) + '</p>' +
+            '<p>' + esc(d.notes).replace(/\n/g, '<br>') + '</p>' +
           '</div>' +
           '<div class="song-musicians">' +
             '<div class="block-label">Musicians</div>' +
@@ -2043,5 +1776,6 @@ var EDITOR_ENABLED = FORCE_EDITOR !== null ? FORCE_EDITOR : isLocal;
 }());
 </script>
 
-</body>
-</html>
+
+
+</body></html>
